@@ -7,13 +7,14 @@ argument and returns a string to write to file
 import os
 
 
-def dir_printer(path):
-    return path
+def dir_printer(dir, subdirs, files):
+    return dir
 
 
 def dir_walker(path, func_list):
     for directory, dirnames, filenames in os.walk(path):
-        print('dir {}, dirnames {}, filenames {}'.format(directory, dirnames, filenames))
+        for func in func_list:
+            print(func(directory, dirnames, filenames))
 
 
 if __name__ == '__main__':
