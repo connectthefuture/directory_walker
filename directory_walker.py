@@ -7,5 +7,16 @@ argument and returns a string to write to file
 import os
 
 
+def dir_printer(path):
+    return path
+
+
 if __name__ == '__main__':
-    path = '/home/sam/test/'
+
+    def main():
+        func_list = [
+            dir_printer
+        ]
+        path = '/home/sam/test/'
+
+    main()
