@@ -15,19 +15,14 @@ def num_files_printer(dir, subdirs, files):
     return str(len(files))
 
 
-def format_newline(dir, subdirs, files):
-    return '\n'
-
-
-def format_spaced_dash(dir, subdirs, files):
-    return ' - '
-
-
 def dir_walker(path, func_list, output):
     with open(output, 'w') as f:
         for directory, dirnames, filenames in os.walk(path):
             for func in func_list:
-                f.write(func(directory, dirnames, filenames))
+                if type(func) == str:
+                    f.write(func)
+                else:
+                    f.write(func(directory, dirnames, filenames))
 
 
 if __name__ == '__main__':
@@ -35,9 +30,9 @@ if __name__ == '__main__':
     def main():
         func_list = [
             dir_printer,
-            format_spaced_dash,
+            '\t',
             num_files_printer,
-            format_newline
+            '\n',
         ]
         path = '/home/sam/test/'
         output = '/home/sam/dir_walker_output.txt'
