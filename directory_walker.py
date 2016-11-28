@@ -23,10 +23,11 @@ def format_spaced_dash(dir, subdirs, files):
     return ' - '
 
 
-def dir_walker(path, func_list):
-    for directory, dirnames, filenames in os.walk(path):
-        for func in func_list:
-            print(func(directory, dirnames, filenames))
+def dir_walker(path, func_list, output):
+    with open(output, 'w') as f:
+        for directory, dirnames, filenames in os.walk(path):
+            for func in func_list:
+                f.write(func(directory, dirnames, filenames))
 
 
 if __name__ == '__main__':
@@ -39,6 +40,7 @@ if __name__ == '__main__':
             format_newline
         ]
         path = '/home/sam/test/'
-        dir_walker(path, func_list)
+        output = '/home/sam/dir_walker_output.txt'
+        dir_walker(path, func_list, output)
 
     main()
