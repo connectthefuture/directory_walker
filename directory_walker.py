@@ -11,6 +11,11 @@ def dir_printer(path):
     return path
 
 
+def dir_walker(path, func_list):
+    for directory, dirnames, filenames in os.walk(path):
+        print('dir {}, dirnames {}, filenames {}'.format(directory, dirnames, filenames))
+
+
 if __name__ == '__main__':
 
     def main():
@@ -18,5 +23,6 @@ if __name__ == '__main__':
             dir_printer
         ]
         path = '/home/sam/test/'
+        dir_walker(path, func_list)
 
     main()
