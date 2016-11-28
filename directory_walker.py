@@ -11,6 +11,10 @@ def dir_printer(dir, subdirs, files):
     return dir
 
 
+def num_files_printer(dir, subdirs, files):
+    return str(len(files))
+
+
 def dir_walker(path, func_list):
     for directory, dirnames, filenames in os.walk(path):
         for func in func_list:
@@ -21,7 +25,8 @@ if __name__ == '__main__':
 
     def main():
         func_list = [
-            dir_printer
+            dir_printer,
+            num_files_printer
         ]
         path = '/home/sam/test/'
         dir_walker(path, func_list)
